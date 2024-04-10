@@ -14,8 +14,120 @@
 
 \begin{document}
 \maketitle
-\tableofcontents
+
+\begin{problem}
+    Give an example of a ring map $A \to B$ which satisfies the infinitesimal lifting criterion for being etale, but is not flat itself.
+\end{problem}
+
+\proof (cf. \href{https://mathoverflow.net/a/200}{MathOverflow answer}) Note that the group-ring $k[\bQ_{\ge 0}]$ is the ring of \href{https://en.wikipedia.org/wiki/Puiseux\_series}{Puiseux series}, whose elements are of the form
+$$ \sum_{q \in \bQ_{\ge 0}} a_{q} T^{q}, \quad a_{q} \in k. $$
+We consider the projection map $k[\bQ_{\ge 0}] \to k$. It is not flat because it is not torsion-free.
+
+Let us prove it if formally étale. We consider a diagram
+
+% https://q.uiver.app/#q=WzAsNCxbMSwxLCJrW1xcbWF0aGJmIFFfe1xcZ2UgMH1dIl0sWzEsMCwiayJdLFswLDAsIlIvSSJdLFswLDEsIlIiXSxbMCwxXSxbMSwyXSxbMywyXSxbMCwzXSxbMSwzLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	{R/I} & k \\
+	R & {k[\mathbf Q_{\ge 0}]}
+	\arrow[from=2-2, to=1-2]
+	\arrow[from=1-2, to=1-1]
+	\arrow[from=2-1, to=1-1]
+	\arrow[from=2-2, to=2-1]
+	\arrow[dashed, from=1-2, to=2-1]
+\end{tikzcd}\]
+
+where $I$ is a square-zero ideal of $R$. Note that $T^{q} \in k[\bQ_{\ge 0}]$ maps to zero in $R$. Indeed, $T^{\frac{q}{2}}$ maps to a square-zero element in $R$ by the commutation. Hence, there is the unique map $k \to R$ which is a just composition of $k \to k[\bQ_{\ge 0}] \to R$. This proves that the projection is formally étale.
+
+\newpage
+
+\begin{problem}
+    Give an example of a flat ring map $A \to B$ such that $\Omega^{1}_{B/A} = 0$, but $A \to B$ does not satisfy the infinitesimal lifting criterion for being étale. Note that such a map cannot be finitely presented.
+\end{problem}
+
+\begin{remark}
+    1. Such maps cannot be finitely presented because *étale = finite presentation + flat + $\Omega^{1}$-trivial = finite presentation + formally étale*.
+    2. All of the properties being flat over $A$, admiting trivial module of Kähler differentials over $A$, and being formally étale over $A$ are closed under colimit and base-change.
+\end{remark}
 
 
+\proof There is a perfection $\bF_{p}[T] \to \bF_{p}[T^{1/p^{\infty}}]$ defined by the colimit of the system
+$$
+\bF_{p}[T] \overset{T^{p}}{\longrightarrow} \bF_{p}[T] \overset{T^{p}}{\longrightarrow} \cdots.
+$$
+Although it gives an example (cf. [Stacks Project](https://stacks.math.columbia.edu/tag/01UA)), we give a simpler one. Let us consider
+$$
+\bF_{p} \to \bF_{p}[T^{1/p^{\infty}}]/(T).
+$$
+Since the base is a field, it must be flat. Its module of differentials can be computed as
+$$
+\Omega^{1}_{\bF_{p} \to \bF_{p}[T^{1/p^{\infty}}]/(T)} = \lim_{\longrightarrow} \Omega^{1}_{\bF_{p} \to \bF_{p}[T^{1/p^{i}}]/(T)} = 0.
+$$
+The remainder is to show that it is not formally étale. Consider the following diagram.
+
+% https://q.uiver.app/#q=WzAsNCxbMSwxLCJcXG1hdGhiZntGfV9wIl0sWzEsMCwiXFxtYXRoYmZ7Rn1fcFtUXnsxL3BeXFxpbmZ0eX1dLyhUKSJdLFswLDEsIlxcbWF0aGJme0Z9X3BbVF57MS9wXlxcaW5mdHl9XS8oVF5wKSJdLFswLDAsIlxcbWF0aGJme0Z9X3BbVF57MS9wXlxcaW5mdHl9XS8oVCkiXSxbMCwxXSxbMCwyXSxbMSwzLCIiLDAseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxLDIsIiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsyLDNdXQ==
+\[\begin{tikzcd}
+	{\mathbf{F}_p[T^{1/p^\infty}]/(T)} & {\mathbf{F}_p[T^{1/p^\infty}]/(T)} \\
+	{\mathbf{F}_p[T^{1/p^\infty}]/(T^p)} & {\mathbf{F}_p}
+	\arrow[from=2-2, to=1-2]
+	\arrow[from=2-2, to=2-1]
+	\arrow[Rightarrow, no head, from=1-2, to=1-1]
+	\arrow[dashed, from=1-2, to=2-1]
+	\arrow[from=2-1, to=1-1]
+\end{tikzcd}\]
+
+The existence of the dotted arrow is equivalent with the existence of a section of $\bF[T^{1/p^{\infty}}]/(T^{p}) \to \bF[T^{1/p^{\infty}}]/(T)$, but simple computation gives there is no suce map. Hence, this morphism is flat and its $\Omega^{1}$ is trivial but not formally étale.
+
+\newpage
+
+\begin{problem}
+    Let $f:X \to S$ be a locally finitely presented unramified morphism. Show that any section of $f$ is an open immersion. If $f$ is additionally assumed to be separated, then show that a section has to be an isomorphism onto a connected component.
+\end{problem}
+
+\proof We compute next pullback diagram.
+
+% https://q.uiver.app/#q=WzAsNSxbMSwxLCJTIl0sWzIsMSwiWCJdLFsyLDIsIlggXFx0aW1lc19TIFgiXSxbMSwyLCJYIl0sWzAsMCwiUCciXSxbMCwxLCJzIl0sWzEsMiwiKHMgXFxjaXJjIGYsIFxcb3BlcmF0b3JuYW1le2lkfV9YKSJdLFswLDMsInMiLDJdLFszLDIsIlxcRGVsdGEiLDJdLFswLDIsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dLFs0LDMsIlxcYWxwaGEiLDEseyJjdXJ2ZSI6Mn1dLFs0LDEsIlxcYmV0YSIsMSx7ImN1cnZlIjotMX1dLFs0LDAsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{P'} \\
+	& S & X \\
+	& X & {X \times_S X}
+	\arrow["s", from=2-2, to=2-3]
+	\arrow["{(s \circ f, \operatorname{id}_X)}", from=2-3, to=3-3]
+	\arrow["s"', from=2-2, to=3-2]
+	\arrow["\Delta"', from=3-2, to=3-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+	\arrow["\alpha"{description}, curve={height=12pt}, from=1-1, to=3-2]
+	\arrow["\beta"{description}, curve={height=-6pt}, from=1-1, to=2-3]
+	\arrow[dashed, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+Indeed, from the commutation $\Delta \circ \alpha = (s \circ f, \id_{X}) \circ \beta$, we read that $\alpha = \beta = s \circ f \circ \beta$. From this, the unique map $P' \to S$ is the composition $P' \to X \to S$.
+
+Since $f$ is unramified, we can conclude that $\Delta$ (thus, $s$) is an open immersion. If $f$ is, moreover, separated, then $\Delta$ (thus, $s$) is a closed immersion.
+
+\newpage
+
+\begin{problem}
+    A morphism $f:X \to S$ is called a finite etale cover if $f$ is finite, surjective, and etale. Classify all finite etale covers of:
+    \begin{enumerate}
+        \item $\Spec(\bR)$
+        \item $\bP^{1}_{\bC}$ and $\bP^{1}_{\overline{\bF}_{q}}$
+        \item $\bA^{1}_{\bC} = \Spec(\bC[T])$
+        \item $\bG_{m, \bC} = \Spec(\bC[T^{\pm}])$
+        \item $\Spec(\mathcal{O}_{C,x})$ where $C$ is a smooth projective curve over $\bC$, and $x \in C$ is a closed point. Answer in terms of the projective geometry of $C$.
+        \item An Artinian local $\bC$-algebra
+        \item A complete local $\bC$-algebra
+        \item An elliptic curve over $\bC$
+        \item The nodal cubic in $\bP^{2}_{\bC}$
+        \item The cuspidal cubic in $\bP^{2}_{\bC}$. (The next exercise may be useful here.)
+        \item $\Spec(\bZ)$
+        \item $\Spec(\bZ_{(p)})$, the local scheme of $\Spec(\bZ)$ at a prime $p$. Answer in terms of number fields.
+        \item $\Spec(\bZ_{p})$
+        \item $\bA^{2}_{\bC} \setminus 0$
+    \end{enumerate}
+\end{problem}
+
+\proof
+1. Over any field $K$, every étale algebra are finite product of finite separable extensions of $K$. Clearly, all of them defined étale covers. Hence, the answer is *finite disjoint union of $\Spec(\bR)$ and $\Spec(\bC)$*.
+2. 
 
 \end{document}
