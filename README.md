@@ -1,2 +1,3 @@
-# bhatt-etale-cohomology-solutions
-This is a solution to Bhatt's étale cohomology problems, provided in his étale cohomology class.
+# Bhatt Étale Cohomology Solutions
+
+This is a unofficial solution to [Bhatt's étale cohomology problems](https://www.math.ias.edu/~bhatt/teaching/mat731fall2011/index.html).
